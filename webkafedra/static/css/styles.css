@@ -212,3 +212,219 @@ body, h1, a {
     text-align: center;
     color: #7f8c8d;
 }
+/* Основные стили формы */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #f5f7fa;
+  padding: 20px;
+}
+
+.auth-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 450px;
+  transition: transform 0.3s ease;
+}
+
+.auth-card:hover {
+  transform: translateY(-5px);
+}
+
+.auth-title {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 14px;
+  color: #5a6d80;
+  font-weight: 500;
+}
+
+.form-input {
+  padding: 14px 16px;
+  border: 1px solid #e0e4e8;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #4e83d7;
+  box-shadow: 0 0 0 3px rgba(78, 131, 215, 0.2);
+  outline: none;
+}
+
+.forgot-password {
+  font-size: 13px;
+  color: #6c7a89;
+  text-align: right;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.forgot-password:hover {
+  color: #4e83d7;
+}
+
+.submit-btn {
+  background-color: #4e83d7;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #3a6bb7;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #6c7a89;
+  font-size: 15px;
+}
+
+.auth-link {
+  color: #4e83d7;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 30px 20px;
+  }
+  
+  .auth-title {
+    font-size: 24px;
+  }
+}
+* Дополнительные стили для формы регистрации */
+.form-hint {
+  font-size: 12px;
+  color: #6c7a89;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.password-requirements {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 15px 0;
+  font-size: 13px;
+}
+
+.password-requirements ul {
+  margin: 5px 0 0 20px;
+  padding: 0;
+}
+
+/* Анимация для переключения между формами */
+.auth-transition {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Добавьте это в ваш styles.css */
+
+/* Кнопка меню */
+.dropbtn {
+    background: #2c3e50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Контейнер выпадающего меню */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Содержимое меню (скрыто по умолчанию) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+/* Показываем меню при наведении */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Стили для пунктов меню от Django CMS */
+.dropdown-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-content li {
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-content li a {
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-content li:hover {
+    background: #f5f5f5;
+}
+
+/* Подменю (если есть вложенные пункты) */
+.dropdown-content ul ul {
+    left: 100%;
+    top: 0;
+    position: absolute;
+    display: none;
+    background: white;
+}
+
+.dropdown-content li:hover > ul {
+    display: block;
+}

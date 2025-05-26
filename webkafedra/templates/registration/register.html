@@ -1,10 +1,43 @@
-{% extends "kafedra_template.html" %}
+{% extends "empl_review.html" %}
 
 {% block content %}
-  <h2>Регистрация</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
-  </form>
+<div class="auth-container">
+  <div class="auth-card">
+    <h2 class="auth-title">Создать аккаунт</h2>
+    <form method="post" class="auth-form">
+      {% csrf_token %}
+      
+      <div class="form-group">
+        <label for="id_username" class="form-label">Имя пользователя</label>
+        <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" 
+               maxlength="150" class="form-input" required id="id_username">
+        <small class="form-hint">Только буквы, цифры и @/./+/-/_</small>
+      </div>
+      
+      <div class="form-group">
+        <label for="id_email" class="form-label">Email</label>
+        <input type="email" name="email" class="form-input" required id="id_email">
+      </div>
+      
+      <div class="form-group">
+        <label for="id_password1" class="form-label">Пароль</label>
+        <input type="password" name="password1" autocomplete="new-password" 
+               class="form-input" required id="id_password1">
+        <small class="form-hint">Минимум 8 символов, не только цифры</small>
+      </div>
+      
+      <div class="form-group">
+        <label for="id_password2" class="form-label">Подтверждение пароля</label>
+        <input type="password" name="password2" autocomplete="new-password" 
+               class="form-input" required id="id_password2">
+      </div>
+      
+      <button type="submit" class="submit-btn">Зарегистрироваться</button>
+      
+      <div class="auth-footer">
+        <p>Уже есть аккаунт? <a href="{% url 'login' %}" class="auth-link">Войти</a></p>
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock %}

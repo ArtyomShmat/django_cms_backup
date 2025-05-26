@@ -31,9 +31,11 @@
     <body>
         {% cms_toolbar %}
         <div class="container">
-            <ul class="nav">
-                {% show_menu 0 100 100 100 %}
-            </ul>
+            <div class="dropdown">
+    <button class="dropbtn">Меню</button>
+    <div class="dropdown-content">
+        {% show_menu 0 100 100 100 "menu/cms_menu.html" %}
+    </div>
             {% block content %}{% endblock content %}
         </div>
         {% render_block "js" %}
