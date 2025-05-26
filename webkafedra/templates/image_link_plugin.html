@@ -1,0 +1,16 @@
+{% load easy_thumbnails_tags static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<div class="staff-card">
+    <a href="{{ instance.url }}" class="staff-link">
+        <div class="image-wrapper">
+            {% if instance.image %}
+                <img src="{{ instance.image|thumbnail_url:'300x200' }}" 
+                     alt="{{ instance.text|striptags|truncatechars:10 }}" 
+                     class="staff-image">
+            {% endif %}
+        </div>
+        <div class="staff-text">
+            {{ instance.text|safe }}
+        </div>
+    </a>
+</div>

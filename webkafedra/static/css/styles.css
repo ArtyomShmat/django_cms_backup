@@ -102,3 +102,113 @@ body, h1, a {
     align-items: center;
     gap: 20px;
 }
+
+/* Контейнер с серым фоном */
+.responsive-container {
+    /* Задаём радиус для контейнера; подберите значение под дизайн */
+    --container-radius: 50px;  
+    background-color: #ccc;           /* серый фон */
+    border-radius: var(--container-radius);
+    padding: 20px;                    /* отступ, чтобы было видно серое обрамление вокруг изображения */
+    width: 90%;                       /* адаптивная ширина контейнера */
+    max-width: 500px;                 /* максимальная ширина для больших экранов */
+    margin: 0 auto;                   /* центрирование контейнера */
+  }
+  
+  /* Изображение внутри контейнера */
+  .responsive-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* Image будет иметь радиус на 30 пикселей меньше, чем у контейнера */
+    border-radius: calc(var(--container-radius) - 30px);
+  }
+  .rounded-corners {
+    border-radius: 20px;
+}
+
+/* Контейнер карточки сотрудника */
+.staff-card {
+    width: 100%;
+    height: 100%; /* Занимает всю высоту родителя */
+    display: flex;
+    flex-direction: column;
+    background: #f8f8f8;
+    border-radius: 20px;
+    overflow: hidden; /* Важно для скругления углов */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.staff-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Ссылка-обертка */
+.staff-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Контейнер для изображения с фиксированным соотношением сторон 4:3 */
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* 4:3 Aspect Ratio */
+    overflow: hidden;
+}
+
+/* Само изображение */
+.staff-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: flex; /* Обрезает изображение с сохранением пропорций */
+    object-position: center;
+}
+
+/* Текстовая часть */
+.staff-text {
+    padding: 15px;
+    flex-grow: 1; /* Занимает оставшееся пространство */
+    display: center;
+    align-items:flex-start;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.4;
+    font-size: 16px;
+    word-break: break-word; /* Перенос длинных слов */
+}
+/* Контейнер галереи */
+.staff-gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Заголовок */
+.gallery-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+/* Сетка сотрудников */
+.staff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 10px;
+}
+
+/* Сообщение при пустой галерее */
+.empty-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #7f8c8d;
+}

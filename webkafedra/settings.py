@@ -187,6 +187,7 @@ INSTALLED_APPS = [
     
 ]
 
+
 LANGUAGES = (
     ## Customize this
     ('ru', gettext('ru')),
@@ -246,5 +247,13 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
+THUMBNAIL_ALIASES = {
+    '': {  # здесь ключ пустой, если не используете именованные наборы алиасов
+        '300x200': {
+            'size': (500, 400),
+            'crop': False,
+        },
+    },
+}
 LOGIN_REDIRECT_URL = '/' 
 LOGOUT_REDIRECT_URL = '/'

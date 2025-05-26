@@ -1,0 +1,12 @@
+{% load cms_tags static easy_thumbnails_tags %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<div class="staff-gallery-container">
+    <h1 class="gallery-title">Сотрудники</h1> 
+    <div class="staff-grid">
+        {% for child in instance.child_plugin_instances %}
+            {% render_plugin child %}
+        {% empty %}
+            <p class="empty-message">Нет сотрудников для отображения</p>
+        {% endfor %}
+    </div>
+</div>
