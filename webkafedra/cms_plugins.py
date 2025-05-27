@@ -7,6 +7,7 @@ from cms.models.pluginmodel import CMSPlugin
 from django.db import models
 from cms.plugin_base import CMSPluginBase
 from .models import Document
+import feedparser
 
 
 # Плагин для галереи сотрудников
@@ -107,3 +108,29 @@ class DocumentCMSPlugin(CMSPluginBase):
         })
         return context
 plugin_pool.register_plugin(DocumentCMSPlugin)
+
+
+
+class RSSNewsPlugin(CMSPluginBase):
+    name = _("Новости (RSS)")
+    render_template = "rss_news_plugin.html"
+    cache = False
+
+    def render(self, context, instance, placeholder):
+        rss_url = "https://tproger.ru/feed"
+        feed = feedparser.parse(rss_url)
+
+        news_items = [{
+            "title": entry.title,
+            "link": entry.link,
+            "summary": entry.summary
+        } for entry in feed.entries[:15]]
+
+        context.update({
+            'news_items': news_items,
+            'placeholder': placeholder,
+            'instance': instance,
+        })
+        return context
+
+plugin_pool.register_plugin(RSSNewsPlugin)

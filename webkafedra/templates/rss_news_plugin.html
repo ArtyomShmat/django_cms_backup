@@ -1,0 +1,52 @@
+{% load static %}
+<style>
+    .news-container {
+        padding: 20px;
+        background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        max-width: 800px;
+        margin: 20px auto;
+        font-family: Arial, sans-serif;
+    }
+    .news-container h2 {
+        text-align: center;
+        color: #2c3e50;
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+    .news-item {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        margin-bottom: 12px;
+        transition: transform 0.2s;
+    }
+    .news-item:hover {
+        transform: scale(1.03);
+    }
+    .news-item a {
+        text-decoration: none;
+        color: #2980b9;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .news-item p {
+        font-size: 16px;
+        color: #5a6d80;
+        margin-top: 5px;
+    }
+</style>
+
+<div class="news-container">
+    <h2>Последние новости</h2>
+    <ul style="list-style: none; padding: 0;">
+        {% for news in news_items %}
+            <li class="news-item">
+                <a href="{{ news.link }}" target="_blank">{{ news.title }}</a>
+                <p>{{ news.summary|striptags }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
