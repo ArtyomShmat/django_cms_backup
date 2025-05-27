@@ -1,0 +1,43 @@
+{% extends "empl_review.html" %}
+{% load static %}
+
+{% block content %}
+<div class="dashboard-container" style="display: flex; justify-content: center; align-items: center; padding: 20px; min-height: 80vh; background-color: #f5f7fa;">
+  <div class="dashboard-card" style="background: white; border-radius: 12px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); padding: 40px; width: 100%; max-width: 450px;">
+    
+    <h2 class="dashboard-title" style="text-align: center; color: #2c3e50; margin-bottom: 30px; font-size: 28px;">Личный кабинет</h2>
+    
+    <!-- Блок для отображения аватара пользователя -->
+    <div class="profile-avatar" style="text-align: center; margin-bottom: 20px;">
+      {% if user.userprofile.photo %}
+          <img src="{{ user.userprofile.photo.url }}" alt="Avatar" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #4e83d7;">
+      {% else %}
+          <img src="{% static 'images/default-avatar.png' %}" alt="Default Avatar" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #4e83d7;">
+      {% endif %}
+    </div>
+    
+    <div class="profile-info" style="margin-bottom: 30px; font-size: 14px; color: #5a6d80;">
+      <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+      <p><strong>Дата регистрации:</strong> {{ user.date_joined|date:"Y-m-d H:i" }}</p>
+      <p><strong>Последняя авторизация:</strong> {{ user.last_login|date:"Y-m-d H:i" }}</p>
+      <p>
+        <strong>Уровень доступа:</strong> {{ user.userprofile.access_level }}
+        {% if not user.is_superuser %}
+          (только для просмотра)
+        {% endif %}
+      </p>
+    </div>
+    
+    <h3 class="form-title" style="text-align: center; color: #2c3e50; margin-bottom: 20px; font-size: 20px;">Редактировать профиль</h3>
+    
+    <form method="post" enctype="multipart/form-data" class="auth-form" style="display: flex; flex-direction: column; gap: 20px;">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="submit-btn" style="background-color: #4e83d7; color: white; padding: 14px; border: none; border-radius: 8px; font-size: 16px; font-weight: 500; cursor: pointer;">
+        Сохранить изменения
+      </button>
+    </form>
+    
+  </div>
+</div>
+{% endblock %}

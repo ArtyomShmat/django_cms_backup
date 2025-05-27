@@ -3,6 +3,11 @@ from cms.plugin_pool import plugin_pool
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import StaffGallery, ImageLinkPluginModel
+from cms.models.pluginmodel import CMSPlugin
+from django.db import models
+from cms.plugin_base import CMSPluginBase
+from .models import Document
+
 
 # Плагин для галереи сотрудников
 class StaffGalleryPlugin(CMSPluginBase):
@@ -85,3 +90,20 @@ class LogoutButtonPlugin(CMSPluginBase):
         return context
 
 plugin_pool.register_plugin(LogoutButtonPlugin)
+
+
+class DocumentCMSPlugin(CMSPluginBase):
+    name = _("Документы")  # Это имя будет отображаться в списке плагинов
+    render_template = "document_plugin.html"  # путь к шаблону плагина
+    cache = False  # отключаем кэширование, если данные динамические
+
+    def render(self, context, instance, placeholder):
+        documents = Document.objects.all().order_by('-uploaded_at')
+        context.update({
+            'documents': documents,
+            # Можно добавить дополнительные переменные, например, instance, placeholder и т.д.
+            'placeholder': placeholder,
+            'instance': instance,
+        })
+        return context
+plugin_pool.register_plugin(DocumentCMSPlugin)

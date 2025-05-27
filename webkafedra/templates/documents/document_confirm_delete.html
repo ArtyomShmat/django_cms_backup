@@ -1,0 +1,15 @@
+{% extends "empl_review.html" %}
+
+{% block content %}
+<div style="max-width: 450px; margin: 20px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); text-align: center;">
+  <h2>Подтверждение удаления</h2>
+  <p>Вы действительно хотите удалить документ: <strong>{{ document.title }}</strong>?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" style="background: red; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">
+      Удалить
+    </button>
+    <a href="{% url 'document_list' %}" style="margin-left: 10px; text-decoration: none;">Отмена</a>
+  </form>
+</div>
+{% endblock %}

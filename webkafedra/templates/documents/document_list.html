@@ -1,0 +1,38 @@
+{% extends "empl_review.html" %}
+{% load static %}
+
+{% block content %}
+<div class="documents-list-container" style="max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1);">
+  <h2 style="text-align: center; font-size: 28px; color: #2c3e50;">Документы</h2>
+  
+  {% if documents %}
+    <ul style="list-style: none; padding: 0;">
+      {% for doc in documents %}
+        <li style="padding: 15px 10px; border-bottom: 1px solid #eee;">
+          <strong style="font-size: 18px; color: #2c3e50;">{{ doc.title }}</strong>
+          {% if doc.description %}
+            <p style="font-size: 14px; color: #5a6d80; margin: 5px 0;">{{ doc.description }}</p>
+          {% endif %}
+          <p style="font-size: 13px; color: #6c7a89;">Загружено: {{ doc.uploaded_at|date:"Y-m-d H:i" }}</p>
+          <a href="{{ doc.file.url }}" download style="display: inline-block; margin-top: 8px; background: #4e83d7; color: #fff; padding: 10px 15px; border-radius: 8px; text-decoration: none;">Скачать</a>
+          
+          {% if request.user.is_superuser %}
+            <a href="{% url 'document_delete' doc.pk %}" style="display: inline-block; margin-top: 8px; margin-left: 10px; background: #e74c3c; color: #fff; padding: 10px 15px; border-radius: 8px; text-decoration: none;"
+               onclick="return confirm('Вы действительно хотите удалить этот документ?');">
+               Удалить
+            </a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p style="text-align: center; color: #6c7a89; font-size: 16px;">Нет доступных документов</p>
+  {% endif %}
+  
+  {% if request.user.is_superuser %}
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="{% url 'document_upload' %}" style="background: #4e83d7; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none;">Загрузить документ</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
